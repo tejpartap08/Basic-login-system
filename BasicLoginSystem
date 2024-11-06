@@ -1,1 +1,27 @@
+# Import required module
+import hashlib
+
+def signup():
+    email = input("Enter email adress ")
+    pwd = input("Enter password: ")
+    conf_pwd = input("Re-enter password: ")
+    if pwd == conf_pwd:
+        enc = pwd.encode()
+        hash1 = hashlib.md5(enc).hexdigest()
+        with open("credentials.txt", "w") as f:
+            f.write(email + "\n")
+            f.write(hash1)
+
+        print("Password Match, Great Job!")
+    else:
+        print("Password does not match. Try again. \n")
+
+def login():
+    email = input("Enter email: ")
+    pwd = input("Enter password: ")
+    auth = pwd.encode()
+    auth_hash = hashlib.md5(auth).hexdigest()
+    with open("credentials.txt", "r") as f:
+        stored_email, stored_pwd = f.read().split("\n")
+
 

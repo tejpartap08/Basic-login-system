@@ -23,5 +23,25 @@ def login():
     auth_hash = hashlib.md5(auth).hexdigest()
     with open("credentials.txt", "r") as f:
         stored_email, stored_pwd = f.read().split("\n")
+    if email == stored_email and auth_hash == stored_pwd:
+        print("Login Successful")
+    else:
+        print("Login Failed \n")
+
+while 1:
+    print("********** Login System **********")
+    print("1. Sign up")
+    print("2. Log in")
+    print("3. Exit")
+    ch = input("Please make a selection: ")
+    if ch == "1":
+        signup()
+    elif ch == "2":
+        login()
+    elif ch == "3":
+        break
+    else:
+        print("Invalid Choice, please try again")
+
 
 
